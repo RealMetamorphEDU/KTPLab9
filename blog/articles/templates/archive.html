@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Архив всех статей</title>
+    <link rel="stylesheet" href="/static/css/article.css" type="text/css">
+</head>
+<body>
+<div class="header">
+    <p class="center_pos"><img id="logo" width="20%" src="/static/img/dpb-logo.png"/></p>
+    <div class="head-title">
+        <p class="service_title center_pos">Коллективный блог</p>
+        <a href="/article/new" class="create_link center_pos">Создать статью</a>
+        <a href="/registration" class="reg_link center_pos">Регистрация</a>
+        <a href="/auth" class="login_link center_pos">Авторизация</a>
+    </div>
+    <div class="parallax_group">
+        <img class="first_img" src="/static/img/file.png"/>
+        <img class="second_img" src="/static/img/file.png"/>
+        <img class="third_img" src="/static/img/file.png"/>
+    </div>
+</div>
+<div class="archive">
+    {% for post in posts %}
+        <div class="one-post">
+            <a class="post-title" href="/article/{{ post.id }}/">{{ post.title }}</a>
+            <a href="#" class="fold-button" style="float: right">Свернуть</a>
+            <div class="article-info">
+                <div class="article-author">{{ post.author.username }}</div>
+                <div class="article-created-date">{{ post.created_date }}</div>
+            </div>
+            <p class="article-text">{{ post.get_excerpt }}</p>
+            <div class="one-post-shadow"></div>
+        </div>
+    {% endfor %}
+</div>
+<script src="/static/js/fold-post.js"></script>
+<script src="/static/js/jquery-3.4.0.min.js"></script>
+<script src="/static/js/jquery.color.js"></script>
+<script src="/static/js/highlight-post.js"></script>
+<script src="/static/js/parallax.js"></script>
+</body>
+</html>
